@@ -14,6 +14,7 @@
 <body bgcolor="CCFFFF">
 	<%
 		List<CustomerForm> list = (List<CustomerForm>) request.getAttribute("list");
+		SearchForm form = (SearchForm) request.getSession().getAttribute("searchForm");
 	%>
 	<div
 		style="width: 60%; margin-right: 20%; margin-left: 20%; text-align: center;">
@@ -36,18 +37,21 @@
 					
 						<label style="margin-right: 2%;">Customer Name</label>
 							<input type="text" name="customer_Name"
-								id="txtCustomerName" style="margin-right: 3%;">
+								id="txtCustomerName" style="margin-right: 3%;" <%if (form.getCustomer_Name() != null) {%>
+								value="<%=form.getCustomer_Name()%>" <%}%>>
 							<label>Sex</label>
 							<select name="sex" id="cboSex" style="margin-right: 5%;">
 									<option value="false">--Choose--</option>
-									<option value="0">Female</option>
-									<option value="1">Male</option>
+									<option value="0" <%=(form.getSex().equals("0")?"selected":"")%>>Female</option>
+									<option value="1" <%=(form.getSex().equals("1")?"selected":"")%>>Male</option>
 							</select>
 							<label>Birthday</label>
-							<input type="text" size=10%; " name="birthDayStart"
+							<input type="text" size=10%; " <%if (form.getBirthDayStart() != null) {%>
+								value="<%=form.getBirthDayStart()%>" <%}%> name="birthDayStart"
 								placeholder="yyyy-mm-dd" id="txtBirthdayForm">
 							<label>～</label>
-							<input type="text" size="10%;" name="birthDayEnd"
+							<input type="text" size="10%;" <%if (form.getBirthDayEnd() != null) {%>
+								value="<%=form.getBirthDayEnd()%>" <%}%> name="birthDayEnd"
 								placeholder="yyyy-mm-dd" id="txtBirthdayTo" style="margin-right: 15%;">
 							<input type="submit" value="Search"
 								onclick="return checkBirthday();" id="btnSearch">
