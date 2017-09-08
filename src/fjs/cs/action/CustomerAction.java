@@ -36,7 +36,11 @@ public class CustomerAction extends Action {
 			throws Exception {
 		
 		int index = 0;
-		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("searchForm") != null ){ 
+			session.removerAttribute("searchForm");
+			session.invalidate();
+		}
 		MSTCUSTOMERDAO dao = new MSTCUSTOMERDAO();
 		
 		request.setAttribute("list", dao.getAllcustomers(index));
