@@ -47,6 +47,7 @@ public class SearchAction extends Action {
 		request.setAttribute("list", list);
 		request.setAttribute("start", 0);
 		request.setAttribute("all", 0);
+		request.setAttribute("formSearch",searchForm);
 		
 			// Di chuyen den man hinh Search		
 		return mapping.findForward("result");
